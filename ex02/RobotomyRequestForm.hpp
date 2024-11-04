@@ -13,23 +13,25 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 
-#include "ClapTrap.hpp"
+#include "AForm.hpp";
 
-class RobotomyRequestForm : public ClapTrap
+class RobotomyRequestForm : public AForm
 {
 public:
 	RobotomyRequestForm();
-	RobotomyRequestForm(const std::string name);
+	RobotomyRequestForm(Bureaucrat &bureaucrat, std::string target);
 	RobotomyRequestForm(const RobotomyRequestForm &other);
-	virtual ~RobotomyRequestForm();
+	~RobotomyRequestForm();
 
 	RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 
-	void attack(const std::string &target);
-	void guardGate();
-
-private:
-	bool _guardGateMode;
+	void robotomized(void) const;
+private :
+	std::string _target;
+	std::string _name;
+	unsigned int _gradetosign;
+	unsigned int _gradetoexecute;
+	bool _signed;
 };
 
 #endif

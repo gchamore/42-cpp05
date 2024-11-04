@@ -13,19 +13,27 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 #define SHRUBBERYCREATIONFORM_HPP
 
-#include "ScavTrap.hpp"
+#include "AForm.hpp"
+#include <fstream>
+#include <iostream>
 
-class ShrubberyCreationForm : public ClapTrap
+class ShrubberyCreationForm : public AForm
 {
 public:
 	ShrubberyCreationForm();
-	ShrubberyCreationForm(const std::string name);
+	ShrubberyCreationForm(Bureaucrat &bureaucrat, std::string target);
 	ShrubberyCreationForm(const ShrubberyCreationForm &other);
-	virtual ~ShrubberyCreationForm();
+	~ShrubberyCreationForm();
 
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 
-	void highFivesGuys(void);
+	void create_tree(void) const;
+private :
+	std::string _target;
+	std::string _name;
+	unsigned int _gradetosign;
+	unsigned int _gradetoexecute;
+	bool _signed;
 };
 
 #endif

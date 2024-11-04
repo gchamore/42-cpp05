@@ -6,7 +6,7 @@
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:52:14 by gchamore          #+#    #+#             */
-/*   Updated: 2024/11/04 15:43:01 by gchamore         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:01:28 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,17 @@ public:
 	};
 
 	std::string getName() const;
-	unsigned int getGrade() const;
+	unsigned int getGradeToSign() const;
+	unsigned int getGradeToExecute() const;
 	bool getSigned() const;
 	void beSigned(Bureaucrat &bureaucrat);
 
 
 private:
-	std::string const _name;
-	unsigned int const _gradeToSign;
-	unsigned int const _gradeToExecute;
-	bool _signed;
+	std::string const _name = 0;
+	unsigned int const _gradeToSign = 0;
+	unsigned int const _gradeToExecute = 0;
+	bool _signed = 0;
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& AForm);

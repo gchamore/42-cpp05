@@ -13,19 +13,25 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 #define PRESIDENTIALPARDONFORM_HPP
 
-#include "ScavTrap.hpp"
+#include "AForm.hpp";
 
-class PresidentialPardonForm : public ClapTrap
+class PresidentialPardonForm : public AForm
 {
 public:
 	PresidentialPardonForm();
-	PresidentialPardonForm(const std::string name);
+	PresidentialPardonForm(Bureaucrat &bureaucrat, std::string target);
 	PresidentialPardonForm(const PresidentialPardonForm &other);
-	virtual ~PresidentialPardonForm();
+	~PresidentialPardonForm();
 
 	PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
 
-	void highFivesGuys(void);
+	void pardoned(void) const;
+private :
+	std::string _target;
+	std::string _name;
+	unsigned int _gradetosign;
+	unsigned int _gradetoexecute;
+	bool _signed;
 };
 
 #endif

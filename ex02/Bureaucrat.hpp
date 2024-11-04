@@ -6,7 +6,7 @@
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:53:05 by gchamore          #+#    #+#             */
-/*   Updated: 2024/11/04 14:30:38 by gchamore         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:44:42 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ public:
 	std::string getName() const;
 	unsigned int getGrade() const;
 	void signForm(Form &form);
+	void executeForm(Form const & form) const;
 
 private:
 	std::string const _name;

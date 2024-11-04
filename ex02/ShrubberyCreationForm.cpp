@@ -11,31 +11,23 @@
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+#include "Bureaucrat.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : ClapTrap()
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("default", 145, 137), _target("default")
 {
 	std::cout << "Default ShrubberyCreationForm constructor called" << std::endl;
-	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
-	std::cout << "name =" << this->_name << " _hitPoints =" << this->_hitPoints << " _energyPoints =" << this->_energyPoints << " _attackDamage =" << this->_attackDamage << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string name) : ClapTrap(name)
+ShrubberyCreationForm::ShrubberyCreationForm(Bureaucrat &bureaucrat, std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
 	std::cout << "ShrubberyCreationForm constructor named called" << std::endl;
-	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
-	std::cout << "name =" << this->_name << " _hitPoints =" << this->_hitPoints << " _energyPoints =" << this->_energyPoints << " _attackDamage =" << this->_attackDamage << std::endl;
+	if (bureaucrat.getGrade() < 1) throw GradeTooHighException();
+	if (bureaucrat.getGrade() > 150) throw GradeTooLowException();
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : ClapTrap(other)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other)
 {
 	std::cout << "ShrubberyCreationForm Copy Constructor called" << std::endl;
-	this->_hitPoints = other._hitPoints;
-	this->_energyPoints = other._energyPoints;
-	this->_attackDamage = other._attackDamage;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
@@ -48,15 +40,34 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	if (this != &other)
 	{
 		_name = other._name;
-		_hitPoints = other._hitPoints;
-		_energyPoints = other._energyPoints;
-		_attackDamage = other._attackDamage;
+		_gradetosign = other._gradetosign;
+		_gradetoexecute = other._gradetoexecute;
+		_signed = other._signed;
 	}
 	std::cout << "Assignment operator called" << std::endl;
 	return *this;
 }
 
-void ShrubberyCreationForm::highFivesGuys(void)
+void ShrubberyCreationForm::create_tree() const
 {
-	std::cout << "ShrubberyCreationForm is requesting a high five! ✋" << std::endl;
+    std::string filename = _target + "_shrubbery";
+    std::ofstream file(filename.c_str());
+    if (!file.is_open())
+    {
+        std::cerr << "Erreur : impossible de créer le fichier " << filename << std::endl;
+        return;
+    }
+    file << "       _-_\n";
+    file << "    /~~   ~~\\\n";
+    file << " /~~         ~~\\\n";
+    file << "{               }\n";
+    file << " \\  _-     -_  /\n";
+    file << "   ~  \\\\ //  ~\n";
+    file << " _- -   | | _- _\n";
+    file << "   _ -  | |   -_\n";
+    file << "       // \\\\\n";
+    file.close();
+    std::cout << "Arbre ASCII créé dans le fichier " << filename << std::endl;
 }
+
+

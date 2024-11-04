@@ -49,7 +49,7 @@ Form &Form::operator=(const Form &other)
 
 std::ostream &operator<<(std::ostream &os, const Form &form)
 {
-    os << "Form Name: " << form.getName() << ", Signed: " << (form.getSigned() ? "Yes" : "No") << ", Grade Required: " << form.getGrade() << std::endl;
+    os << "Form Name: " << form.getName() << ", Signed: " << (form.getSigned() ? "Yes" : "No") << ", Grade Required: " << form.getGradeToSign() << std::endl;
     return os;
 }
 
@@ -68,9 +68,14 @@ std::string Form::getName() const
 	return _name;
 }
 
-unsigned int Form::getGrade() const
+unsigned int Form::getGradeToSign() const
 {
 	return _gradeToSign;
+}
+
+unsigned int Form::getGradeToExecute() const
+{
+	return _gradeToExecute;
 }
 
 bool Form::getSigned() const

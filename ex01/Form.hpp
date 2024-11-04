@@ -46,7 +46,8 @@ public:
 	};
 
 	std::string getName() const;
-	unsigned int getGrade() const;
+	unsigned int getGradeToSign() const;
+	unsigned int getGradeToExecute() const;
 	bool getSigned() const;
 	void beSigned(Bureaucrat &bureaucrat);
 

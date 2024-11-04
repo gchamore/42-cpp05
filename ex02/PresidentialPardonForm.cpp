@@ -11,31 +11,23 @@
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
+#include "Bureaucrat.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : ClapTrap()
+PresidentialPardonForm::PresidentialPardonForm() : AForm("default", 25, 5), _target("default")
 {
 	std::cout << "Default PresidentialPardonForm constructor called" << std::endl;
-	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
-	std::cout << "name =" << this->_name << " _hitPoints =" << this->_hitPoints << " _energyPoints =" << this->_energyPoints << " _attackDamage =" << this->_attackDamage << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string name) : ClapTrap(name)
+PresidentialPardonForm::PresidentialPardonForm(Bureaucrat &bureaucrat, std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
 	std::cout << "PresidentialPardonForm constructor named called" << std::endl;
-	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
-	std::cout << "name =" << this->_name << " _hitPoints =" << this->_hitPoints << " _energyPoints =" << this->_energyPoints << " _attackDamage =" << this->_attackDamage << std::endl;
+	if (bureaucrat.getGrade() < 1) throw GradeTooHighException();
+    if (bureaucrat.getGrade() > 150) throw GradeTooLowException();
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : ClapTrap(other)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other)
 {
 	std::cout << "PresidentialPardonForm Copy Constructor called" << std::endl;
-	this->_hitPoints = other._hitPoints;
-	this->_energyPoints = other._energyPoints;
-	this->_attackDamage = other._attackDamage;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
@@ -48,15 +40,15 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 	if (this != &other)
 	{
 		_name = other._name;
-		_hitPoints = other._hitPoints;
-		_energyPoints = other._energyPoints;
-		_attackDamage = other._attackDamage;
+		_gradetosign = other._gradetosign;
+		_gradetoexecute = other._gradetoexecute;
+		_signed = other._signed;
 	}
 	std::cout << "Assignment operator called" << std::endl;
 	return *this;
 }
 
-void PresidentialPardonForm::highFivesGuys(void)
+void PresidentialPardonForm::pardoned() const
 {
-	std::cout << "PresidentialPardonForm is requesting a high five! ✋" << std::endl;
+	std::cout << _target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 }

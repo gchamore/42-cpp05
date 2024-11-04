@@ -6,7 +6,7 @@
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 16:40:48 by gchamore          #+#    #+#             */
-/*   Updated: 2024/11/04 15:43:13 by gchamore         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:03:47 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ AForm &AForm::operator=(const AForm &other)
 
 std::ostream &operator<<(std::ostream &os, const AForm &AForm)
 {
-    os << "AForm Name: " << AForm.getName() << ", Signed: " << (AForm.getSigned() ? "Yes" : "No") << ", Grade Required: " << AForm.getGrade() << std::endl;
+    os << "AForm Name: " << AForm.getName() << ", Signed: " << (AForm.getSigned() ? "Yes" : "No") << ", Grade Required: " << AForm.getGradeToSign() << std::endl;
     return os;
 }
 
@@ -68,9 +68,14 @@ std::string AForm::getName() const
 	return _name;
 }
 
-unsigned int AForm::getGrade() const
+unsigned int AForm::getGradeToSign() const
 {
 	return _gradeToSign;
+}
+
+unsigned int AForm::getGradeToExecute() const
+{
+	return _gradeToExecute;
 }
 
 bool AForm::getSigned() const

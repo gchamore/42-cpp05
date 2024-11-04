@@ -11,37 +11,28 @@
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
+#include "Bureaucrat.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : ClapTrap()
+RobotomyRequestForm::RobotomyRequestForm() : AForm("default", 72, 45), _target("default")
 {
-	std::cout << "Default ScravTrap constructor called" << std::endl;
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
-	this->_guardGateMode = false;
+	std::cout << "Default RobotomyRequestForm constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string name) : ClapTrap(name)
+RobotomyRequestForm::RobotomyRequestForm(Bureaucrat &bureaucrat, std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
-	std::cout << "ScravTrap constructor named called" << std::endl;
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
-	this->_guardGateMode = false;
+	std::cout << "RobotomyRequestForm constructor named called" << std::endl;
+	if (bureaucrat.getGrade() < 1) throw GradeTooHighException();
+    if (bureaucrat.getGrade() > 150) throw GradeTooLowException();
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : ClapTrap(other)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other)
 {
 	std::cout << "RobotomyRequestForm Copy Constructor called" << std::endl;
-	this->_guardGateMode = other._guardGateMode;
-	this->_hitPoints = other._hitPoints;
-	this->_energyPoints = other._energyPoints;
-	this->_attackDamage = other._attackDamage;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	std::cout << "ScravTrap Destructor called" << std::endl;
+	std::cout << "RobotomyRequestForm Destructor called" << std::endl;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
@@ -49,34 +40,18 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 	if (this != &other)
 	{
 		_name = other._name;
-		_hitPoints = other._hitPoints;
-		_energyPoints = other._energyPoints;
-		_attackDamage = other._attackDamage;
+		_gradetosign = other._gradetosign;
+		_gradetoexecute = other._gradetoexecute;
+		_signed = other._signed;
 	}
 	std::cout << "Assignment operator called" << std::endl;
 	return *this;
 }
 
-void RobotomyRequestForm::attack(const std::string &target)
+void RobotomyRequestForm::robotomized() const
 {
-	if (this->_energyPoints > 0 && this->_hitPoints > 0)
-	{
-		std::cout << "RobotomyRequestForm " << this->_name << " attacks " << target << ", with a huge " << this->_attackDamage << " points of damage!" << std::endl;
-		this->_energyPoints--;
-	}
-	else if (this->_energyPoints == 0)
-		std::cout << "\033[31mRobotomyRequestForm " << this->_name << " can't attack " << target << ", no energy points left.\033[0m" << std::endl;
+	if (rand() % 2)
+		std::cout << _target << " has been robotomized successfully" << std::endl;
 	else
-		std::cout << "\033[31mRobotomyRequestForm " << this->_name << " can't attack " << target << ", not enough hit points.\033[0m" << std::endl;
-}
-
-void RobotomyRequestForm::guardGate(void)
-{
-	if (this->_guardGateMode == false)
-	{
-		this->_guardGateMode = true;
-		std::cout << "RobotomyRequestForm " << this->_name << " is now guarding the gate." << std::endl;
-	}
-	else
-		std::cout << "\033[33mRobotomyRequestForm " << this->_name << " is already guarding the gate.\033[0m" << std::endl;
+		std::cout << _target << " has not been robotomized successfully" << std::endl;
 }
