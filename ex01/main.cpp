@@ -5,57 +5,140 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 16:42:27 by gchamore          #+#    #+#             */
-/*   Updated: 2024/10/21 15:09:43 by gchamore         ###   ########.fr       */
+/*   Created: 2024/11/04 10:53:13 by gchamore          #+#    #+#             */
+/*   Updated: 2024/11/04 15:38:31 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
-	// std::cout << "---------------TEST CLAPTRAP---------------\n"
-	// 		  << std::endl;
-	// {
-	// 	std::cout << "\033[34mConstructing\033[0m" << std::endl;
-	// 	ClapTrap a;
-	// 	ClapTrap b("Cody");
+    try
+    {
+		std::cout << std::endl << "-----------------Test Fail----------------" << std::endl << std::endl;
+		
+        Bureaucrat Steph("Steph", 50);
+        Form Form1("Form1", 45, 80);
+		std::cout << Steph << std::endl;
+		std::cout << Form1 << std::endl;
 
-	// 	std::cout << "\033[34mTesting\033[0m" << std::endl;
-	// 	a.attack("some other robot");
-	// 	a.takeDamage(10);
-	// 	a.takeDamage(10);
-	// 	a.beRepaired(5);
-	// 	a.attack("some other other robot");
-	// 	b.beRepaired(3);
-	// 	for (int i = 0; i < 12; i++)
-	// 		b.attack("Cody-clone");
-	// 	b.beRepaired(3);
-	// 	std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
-	// }
-	std::cout << "\n\n---------------TEST SCAVTRAP---------------\n"
-			  << std::endl;
-	{
-		std::cout << "\033[34mConstruct\033[0m" << std::endl;
-		ScavTrap c;
-		ScavTrap d("Greg");
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
-		c.attack("CloneTrap");
-		// for (int i = 0; i < 50; i++)
-		//         c.attack("CloneTrap");
-		c.beRepaired(22);
-		c.takeDamage(21);
-		c.beRepaired(22);
-		c.guardGate();
-		c.guardGate();
-		d.attack("Greg's clone");
-		d.takeDamage(90);
-		d.beRepaired(99);
-		d.beRepaired(90);
-		d.takeDamage(101);
-		d.takeDamage(15);
-		d.attack("Greg'g clone");
-		std::cout << "\033[34mDeconstruct\033[0m" << std::endl;
+        Steph.signForm(Form1);
+
+		std::cout << std::endl << "-----------------Test Print Form State----------------" << std::endl << std::endl;
+        std::cout << Form1 << std::endl;
+		
+		std::cout << "-----------------Test Success----------------" << std::endl << std::endl;
+
+        Bureaucrat Francis("Francis", 30);
+		std::cout << Francis << std::endl;
+		std::cout << Form1 << std::endl;
+        Francis.signForm(Form1);
+
+		std::cout << std::endl << "-----------------Test Print Form State----------------" << std::endl << std::endl;
+        std::cout << Form1 << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Exception attrapée: " << e.what() << std::endl;
+    }
+	try
+    {
+		std::cout << "-----------------Test too high grade on gradetosign----------------" << std::endl << std::endl;
+		Form Form2("Form2", 0, 100);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Exception attrapée: " << e.what() << std::endl;
+    }
+
+	try
+    {
+		std::cout << std::endl << "-----------------Test too high grade on gradetoexecute----------------" << std::endl << std::endl;
+		Form Form2("Form2", 100, 0);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Exception attrapée: " << e.what() << std::endl;
+    }
+
+	try
+    {
+		std::cout << std::endl << "-----------------Test too low grade on gradetosign----------------" << std::endl << std::endl;
+		Form Form4("Form4", 200, 100);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Exception attrapée: " << e.what() << std::endl;
+    }
+
+	try
+    {
+		std::cout << std::endl << "-----------------Test too low grade on gradetoexecute----------------" << std::endl << std::endl;
+		Form Form3("Form3", 100, 200);
 	}
-	return (0);
+    catch (const std::exception &e)
+    {
+        std::cerr << "Exception attrapée: " << e.what() << std::endl;
+    }
+
+	std::cout << std::endl << "-----------------Test Min + Decrement error----------------" << std::endl << std::endl;
+    try
+	{
+        Bureaucrat bob("Berni", 150);
+        std::cout << bob;
+		bob.DecrementGrade();
+		std::cout << bob;
+    }
+    catch (std::exception & e)
+	{
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+
+	std::cout << std::endl << "-----------------Test max + Increment error----------------" << std::endl << std::endl;
+
+    try
+	{
+        Bureaucrat alice("Gaston", 1);
+		std::cout << alice;
+        alice.IncrementGrade();
+		std::cout << alice;
+	}
+    catch (std::exception & e)
+	{
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+
+	// std::cout << std::endl << "-----------------Test Min + Increment until Max error----------------" << std::endl << std::endl;
+		
+	// try
+	// {
+    //     Bureaucrat bob("Didier", 150);
+    //     std::cout << bob;
+	// 	while(1)
+	// 	{
+	// 		std::cout << bob;
+	// 		bob.IncrementGrade();
+	// 	}
+    // }
+    // catch (std::exception & e)
+	// {
+    //     std::cerr << "Exception: " << e.what() << std::endl;
+    // }
+
+	std::cout << std::endl << "-----------------Test construction error because of Min error----------------" << std::endl << std::endl;
+
+	try
+	{
+        Bureaucrat bob("Patoche", 155);
+        std::cout << bob;
+		bob.DecrementGrade();
+		std::cout << bob;
+    }
+    catch (std::exception & e)
+	{
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+    return 0;
 }

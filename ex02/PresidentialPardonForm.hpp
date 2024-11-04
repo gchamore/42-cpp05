@@ -10,30 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
 
-#include <iostream>
+#include "ScavTrap.hpp"
 
-class ClapTrap
+class PresidentialPardonForm : public ClapTrap
 {
 public:
-	ClapTrap();
-	ClapTrap(const std::string name);
-	ClapTrap(const ClapTrap &other);
-	~ClapTrap();
+	PresidentialPardonForm();
+	PresidentialPardonForm(const std::string name);
+	PresidentialPardonForm(const PresidentialPardonForm &other);
+	virtual ~PresidentialPardonForm();
 
-	ClapTrap &operator=(const ClapTrap &other);
+	PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
 
-	void attack(const std::string &target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
-
-protected:
-	std::string _name;
-	unsigned int _hitPoints;
-	unsigned int _energyPoints;
-	unsigned int _attackDamage;
+	void highFivesGuys(void);
 };
 
 #endif

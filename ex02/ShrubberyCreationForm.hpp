@@ -10,20 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+#define SHRUBBERYCREATIONFORM_HPP
 
 #include "ScavTrap.hpp"
 
-class FragTrap : public ClapTrap
+class ShrubberyCreationForm : public ClapTrap
 {
 public:
-	FragTrap();
-	FragTrap(const std::string name);
-	FragTrap(const FragTrap &other);
-	virtual ~FragTrap();
+	ShrubberyCreationForm();
+	ShrubberyCreationForm(const std::string name);
+	ShrubberyCreationForm(const ShrubberyCreationForm &other);
+	virtual ~ShrubberyCreationForm();
 
-	FragTrap &operator=(const FragTrap &other);
+	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 
 	void highFivesGuys(void);
 };

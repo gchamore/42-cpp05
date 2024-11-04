@@ -10,30 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
 
-#include <iostream>
+#include "ClapTrap.hpp"
 
-class ClapTrap
+class RobotomyRequestForm : public ClapTrap
 {
 public:
-	ClapTrap();
-	ClapTrap(const std::string name);
-	ClapTrap(const ClapTrap &other);
-	~ClapTrap();
+	RobotomyRequestForm();
+	RobotomyRequestForm(const std::string name);
+	RobotomyRequestForm(const RobotomyRequestForm &other);
+	virtual ~RobotomyRequestForm();
 
-	ClapTrap &operator=(const ClapTrap &other);
+	RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 
 	void attack(const std::string &target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
+	void guardGate();
 
-protected:
-	std::string _name;
-	unsigned int _hitPoints;
-	unsigned int _energyPoints;
-	unsigned int _attackDamage;
+private:
+	bool _guardGateMode;
 };
 
 #endif

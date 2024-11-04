@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "RobotomyRequestForm.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap()
+RobotomyRequestForm::RobotomyRequestForm() : ClapTrap()
 {
 	std::cout << "Default ScravTrap constructor called" << std::endl;
 	this->_hitPoints = 100;
@@ -21,7 +21,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 	this->_guardGateMode = false;
 }
 
-ScavTrap::ScavTrap(const std::string name) : ClapTrap(name)
+RobotomyRequestForm::RobotomyRequestForm(const std::string name) : ClapTrap(name)
 {
 	std::cout << "ScravTrap constructor named called" << std::endl;
 	this->_hitPoints = 100;
@@ -30,21 +30,21 @@ ScavTrap::ScavTrap(const std::string name) : ClapTrap(name)
 	this->_guardGateMode = false;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : ClapTrap(other)
 {
-	std::cout << "ScavTrap Copy Constructor called" << std::endl;
+	std::cout << "RobotomyRequestForm Copy Constructor called" << std::endl;
 	this->_guardGateMode = other._guardGateMode;
 	this->_hitPoints = other._hitPoints;
 	this->_energyPoints = other._energyPoints;
 	this->_attackDamage = other._attackDamage;
 }
 
-ScavTrap::~ScavTrap()
+RobotomyRequestForm::~RobotomyRequestForm()
 {
 	std::cout << "ScravTrap Destructor called" << std::endl;
 }
 
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 {
 	if (this != &other)
 	{
@@ -57,26 +57,26 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 	return *this;
 }
 
-void ScavTrap::attack(const std::string &target)
+void RobotomyRequestForm::attack(const std::string &target)
 {
 	if (this->_energyPoints > 0 && this->_hitPoints > 0)
 	{
-		std::cout << "ScavTrap " << this->_name << " attacks " << target << ", with a huge " << this->_attackDamage << " points of damage!" << std::endl;
+		std::cout << "RobotomyRequestForm " << this->_name << " attacks " << target << ", with a huge " << this->_attackDamage << " points of damage!" << std::endl;
 		this->_energyPoints--;
 	}
 	else if (this->_energyPoints == 0)
-		std::cout << "\033[31mScavTrap " << this->_name << " can't attack " << target << ", no energy points left.\033[0m" << std::endl;
+		std::cout << "\033[31mRobotomyRequestForm " << this->_name << " can't attack " << target << ", no energy points left.\033[0m" << std::endl;
 	else
-		std::cout << "\033[31mScavTrap " << this->_name << " can't attack " << target << ", not enough hit points.\033[0m" << std::endl;
+		std::cout << "\033[31mRobotomyRequestForm " << this->_name << " can't attack " << target << ", not enough hit points.\033[0m" << std::endl;
 }
 
-void ScavTrap::guardGate(void)
+void RobotomyRequestForm::guardGate(void)
 {
 	if (this->_guardGateMode == false)
 	{
 		this->_guardGateMode = true;
-		std::cout << "ScavTrap " << this->_name << " is now guarding the gate." << std::endl;
+		std::cout << "RobotomyRequestForm " << this->_name << " is now guarding the gate." << std::endl;
 	}
 	else
-		std::cout << "\033[33mScavTrap " << this->_name << " is already guarding the gate.\033[0m" << std::endl;
+		std::cout << "\033[33mRobotomyRequestForm " << this->_name << " is already guarding the gate.\033[0m" << std::endl;
 }
