@@ -28,22 +28,16 @@ public:
 	Form &operator=(const Form &other);
 
 	class GradeTooHighException : public std::exception
-	{
-	public:
-		virtual const char *what() const throw()
-		{
-			return "Grade is too high!";
-		}
-	};
+    {
+    public:
+        virtual const char *what() const throw();
+    };
 
-	class GradeTooLowException : public std::exception
-	{
-	public:
-		virtual const char *what() const throw()
-		{
-			return "Grade is too low!";
-		}
-	};
+    class GradeTooLowException : public std::exception
+    {
+    public:
+        virtual const char *what() const throw();
+    };
 
 	std::string getName() const;
 	unsigned int getGradeToSign() const;

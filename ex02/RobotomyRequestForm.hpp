@@ -13,25 +13,26 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 
-#include "AForm.hpp";
+#include "AForm.hpp"
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 class RobotomyRequestForm : public AForm
 {
 public:
 	RobotomyRequestForm();
-	RobotomyRequestForm(Bureaucrat &bureaucrat, std::string target);
+	RobotomyRequestForm(std::string target);
 	RobotomyRequestForm(const RobotomyRequestForm &other);
 	~RobotomyRequestForm();
 
 	RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 
 	void robotomized(void) const;
+	virtual void execute(Bureaucrat const & executor) const;
 private :
 	std::string _target;
-	std::string _name;
-	unsigned int _gradetosign;
-	unsigned int _gradetoexecute;
-	bool _signed;
 };
 
 #endif

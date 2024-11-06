@@ -15,42 +15,48 @@
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("default", 72, 45), _target("default")
 {
-	std::cout << "Default RobotomyRequestForm constructor called" << std::endl;
+	std::srand(std::time(NULL));
+	// std::cout << "Default RobotomyRequestForm constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(Bureaucrat &bureaucrat, std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
-	std::cout << "RobotomyRequestForm constructor named called" << std::endl;
-	if (bureaucrat.getGrade() < 1) throw GradeTooHighException();
-    if (bureaucrat.getGrade() > 150) throw GradeTooLowException();
+	std::srand(std::time(NULL));
+	// std::cout << "RobotomyRequestForm constructor named called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other), _target(other._target)
 {
-	std::cout << "RobotomyRequestForm Copy Constructor called" << std::endl;
+	// std::cout << "RobotomyRequestForm Copy Constructor called" << std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	std::cout << "RobotomyRequestForm Destructor called" << std::endl;
+	// std::cout << "RobotomyRequestForm Destructor called" << std::endl;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 {
 	if (this != &other)
 	{
-		_name = other._name;
-		_gradetosign = other._gradetosign;
-		_gradetoexecute = other._gradetoexecute;
-		_signed = other._signed;
+		_target = other._target;
 	}
-	std::cout << "Assignment operator called" << std::endl;
+	// std::cout << "Assignment operator called" << std::endl;
 	return *this;
+}
+
+void RobotomyRequestForm::execute(Bureaucrat const & executor) const
+{
+	if (executor.getGrade() > this->getGradeToExecute())
+		throw GradeTooLowException(executor.getName());
+	if (!this->getSigned())
+		throw FormNotSignedException(this->getName());
+	robotomized();
 }
 
 void RobotomyRequestForm::robotomized() const
 {
-	if (rand() % 2)
+	if (std::rand() % 2)
 		std::cout << _target << " has been robotomized successfully" << std::endl;
 	else
 		std::cout << _target << " has not been robotomized successfully" << std::endl;

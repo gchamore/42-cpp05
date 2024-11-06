@@ -6,7 +6,7 @@
 #    By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/26 16:41:00 by gchamore          #+#    #+#              #
-#    Updated: 2024/11/04 15:47:41 by gchamore         ###   ########.fr        #
+#    Updated: 2024/11/06 13:36:36 by gchamore         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ OBJ_DIR = objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 
 DEPS = $(OBJS:.o=.d)
+
+TO_DELETE = Backyard_shrubbery
 
 GREEN = \033[1;32m
 YELLOW = \033[1;33m
@@ -45,7 +47,7 @@ clean:
 	$(RM) $(OBJS) $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(TO_DELETE)
 
 re: fclean all
 

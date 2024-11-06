@@ -21,19 +21,16 @@ class ShrubberyCreationForm : public AForm
 {
 public:
 	ShrubberyCreationForm();
-	ShrubberyCreationForm(Bureaucrat &bureaucrat, std::string target);
+	ShrubberyCreationForm(std::string target);
 	ShrubberyCreationForm(const ShrubberyCreationForm &other);
 	~ShrubberyCreationForm();
 
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 
 	void create_tree(void) const;
+	virtual void execute(Bureaucrat const & executor) const;
 private :
 	std::string _target;
-	std::string _name;
-	unsigned int _gradetosign;
-	unsigned int _gradetoexecute;
-	bool _signed;
 };
 
 #endif

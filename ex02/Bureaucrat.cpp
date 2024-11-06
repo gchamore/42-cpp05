@@ -6,12 +6,12 @@
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:52:59 by gchamore          #+#    #+#             */
-/*   Updated: 2024/11/04 16:44:46 by gchamore         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:45:52 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat()
 {
@@ -51,6 +51,16 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& Bureaucrat)
     return os;
 }
 
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return "Grade is too high!";
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return "Grade is too low!";
+}
+
 void Bureaucrat::IncrementGrade()
 {
     if (_grade <= 1)
@@ -75,7 +85,7 @@ unsigned int Bureaucrat::getGrade() const
 	return _grade;
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
     try
     {
@@ -88,17 +98,15 @@ void Bureaucrat::signForm(Form &form)
     }
 }
 
-void Bureaucrat::executeForm(Form const & form) const
+void Bureaucrat::executeForm(AForm const & form) const
 {
-	if (form.getSigned() == false)
+	try
 	{
-		std::cout << this->getName() << " couldn't execute " << form.getName() << " because the form is not signed" << std::endl;
-		return;
+		std::cout << this->getName() << " executes " << form.getName() << std::endl;
+		form.execute(*this);
 	}
-	if (this->getGrade() > form.getGradeToExecute())
+	catch (const std::exception &e)
 	{
-		std::cout << this->getName() << " couldn't execute " << form.getName() << " because his grade is too low" << std::endl;
-		return;
+		std::cout << this->getName() << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
 	}
-	std::cout << this->getName() << " executed " << form.getName() << std::endl;
 }

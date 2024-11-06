@@ -15,37 +15,41 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("default", 145, 137), _target("default")
 {
-	std::cout << "Default ShrubberyCreationForm constructor called" << std::endl;
+	// std::cout << "Default ShrubberyCreationForm constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(Bureaucrat &bureaucrat, std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
-	std::cout << "ShrubberyCreationForm constructor named called" << std::endl;
-	if (bureaucrat.getGrade() < 1) throw GradeTooHighException();
-	if (bureaucrat.getGrade() > 150) throw GradeTooLowException();
+	// std::cout << "ShrubberyCreationForm constructor named called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other), _target(other._target)
 {
-	std::cout << "ShrubberyCreationForm Copy Constructor called" << std::endl;
+	// std::cout << "ShrubberyCreationForm Copy Constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << "ShrubberyCreationForm Destructor called" << std::endl;
+	// std::cout << "ShrubberyCreationForm Destructor called" << std::endl;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
 {
 	if (this != &other)
 	{
-		_name = other._name;
-		_gradetosign = other._gradetosign;
-		_gradetoexecute = other._gradetoexecute;
-		_signed = other._signed;
+		_target = other._target;
 	}
-	std::cout << "Assignment operator called" << std::endl;
+	// std::cout << "Assignment operator called" << std::endl;
 	return *this;
+}
+
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+{
+	if (executor.getGrade() > this->getGradeToExecute())
+		throw GradeTooLowException(executor.getName());
+	if (!this->getSigned())
+		throw FormNotSignedException(this->getName());
+	create_tree();
 }
 
 void ShrubberyCreationForm::create_tree() const
