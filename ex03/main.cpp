@@ -5,108 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 16:42:27 by gchamore          #+#    #+#             */
-/*   Updated: 2024/10/21 15:08:46 by gchamore         ###   ########.fr       */
+/*   Created: 2024/11/04 10:53:13 by gchamore          #+#    #+#             */
+/*   Updated: 2024/11/06 17:06:21 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "DiamondTrap.hpp"
+#include <iostream>
+#include "Bureaucrat.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
-int main()
+#define RESET "\033[0m"
+#define RED "\033[1;31m"
+#define GREEN "\033[1;32m"
+#define YELLOW "\033[1;33m"
+#define LIGHT_BLUE "\033[38;5;153m"
+#define WHITE "\033[1;37m"
+
+
+int main(void)
 {
-	// std::cout << "---------------TEST CLAPTRAP---------------\n"
-	// 		  << std::endl;
-	// {
-	// 	std::cout << "\033[34mConstructing\033[0m" << std::endl;
-	// 	ClapTrap a;
-	// 	ClapTrap b("Cody");
+	Intern		bob;
+	AForm		*form;
+	Bureaucrat	karen("Karen", 1);
 
-	// 	std::cout << "\033[34mTesting\033[0m" << std::endl;
-	// 	a.attack("some other robot");
-	// 	a.takeDamage(10);
-	// 	a.takeDamage(10);
-	// 	a.beRepaired(5);
-	// 	a.attack("some other other robot");
-	// 	b.beRepaired(3);
-	// 	for (int i = 0; i < 12; i++)
-	// 		b.attack("Cody-clone");
-	// 	b.beRepaired(3);
-	// 	std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
-	// }
-	// std::cout << "\n\n---------------TEST SCAVTRAP---------------\n"
-	// 		  << std::endl;
-	// {
-	// 	std::cout << "\033[34mConstruct\033[0m" << std::endl;
-	// 	ScavTrap c;
-	// 	ScavTrap d("Greg");
-
-	// 	std::cout << "\033[34mTesting\033[0m" << std::endl;
-	// 	c.attack("CloneTrap");
-	// 	// for (int i = 0; i < 50; i++)
-	// 	//         c.attack("CloneTrap");
-	// 	c.beRepaired(22);
-	// 	c.takeDamage(21);
-	// 	c.beRepaired(22);
-	// 	c.guardGate();
-	// 	c.guardGate();
-	// 	d.attack("Greg's clone");
-	// 	d.takeDamage(90);
-	// 	d.beRepaired(99);
-	// 	d.beRepaired(90);
-	// 	d.takeDamage(101);
-	// 	d.takeDamage(15);
-	// 	d.attack("Greg'g clone");
-	// 	std::cout << "\033[34mDeconstruct\033[0m" << std::endl;
-	// }
-	// std::cout << "\n\n---------------TEST FRAGTRAP---------------\n"
-	// 		  << std::endl;
-	// {
-	// 	std::cout << "\033[34mConstruct\033[0m" << std::endl;
-	// 	FragTrap c;
-	// 	FragTrap d("Greg");
-
-	// 	std::cout << "\033[34mTesting\033[0m" << std::endl;
-	// 	c.attack("CloneTrap");
-	// 	// for (int i = 0; i < 102; i++)
-	// 	//         c.attack("CloneTrap");
-	// 	c.beRepaired(22);
-	// 	c.takeDamage(21);
-	// 	c.beRepaired(22);
-	// 	c.highFivesGuys();
-	// 	d.attack("Greg's clone");
-	// 	d.takeDamage(90);
-	// 	d.beRepaired(99);
-	// 	d.beRepaired(90);
-	// 	d.takeDamage(101);
-	// 	d.takeDamage(15);
-	// 	d.highFivesGuys();
-	// 	d.attack("Greg'g clone");
-	// 	std::cout << "\033[34mDeconstruct\033[0m" << std::endl;
-	// }
-	std::cout << "\n\n---------------TEST DIAMONDTRAP---------------\n"
-			  << std::endl;
+	try
 	{
-		std::cout << "\033[34mConstruct\033[0m" << std::endl;
-		DiamondTrap c;
-		DiamondTrap d("Greg");
-
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
-		c.attack("CloneTrap");
-		// for (int i = 0; i < 102; i++)
-		//         c.attack("CloneTrap");
-		c.beRepaired(22);
-		c.takeDamage(21);
-		c.beRepaired(22);
-		c.whoAmI();
-		d.attack("Greg's clone");
-		d.takeDamage(90);
-		d.beRepaired(99);
-		d.beRepaired(90);
-		d.takeDamage(101);
-		d.takeDamage(15);
-		d.whoAmI();
-		d.attack("Greg'g clone");
-		std::cout << "\033[34mDeconstruct\033[0m" << std::endl;
+		form = bob.makeForm("robotomy request", "Alice");
+		delete form;
+		form = bob.makeForm("shrubbery creation", "Charlie");
+		delete form;
+		form = bob.makeForm("presidential pardon", "David");
+		delete form;
+		form = bob.makeForm("random request", "Elisa");
+		delete form;
 	}
+	catch (std::exception &e)
+	{
+		std::cout << "Caught exception: " << e.what() << std::endl;
+	}
+
+	std::cout << "------------------------------------" << std::endl;
+	form = bob.makeForm("shrubbery creation", "Fred");
+	karen.signForm(*form);
+	karen.executeForm(*form);
+	delete form;
+	std::cout << "------------------------------------" << std::endl;
+	form = bob.makeForm("presidential pardon", "Georgia");
+	karen.signForm(*form);
+	karen.executeForm(*form);
+	delete form;
 	return (0);
 }

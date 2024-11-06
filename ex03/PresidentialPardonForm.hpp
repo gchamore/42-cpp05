@@ -10,26 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
 
-#include "ClapTrap.hpp"
+#include "AForm.hpp"
 
-class ScavTrap : virtual public ClapTrap
+class PresidentialPardonForm : public AForm
 {
 public:
-	ScavTrap();
-	ScavTrap(const std::string name);
-	ScavTrap(const ScavTrap &other);
-	virtual ~ScavTrap();
+	PresidentialPardonForm();
+	PresidentialPardonForm(std::string target);
+	PresidentialPardonForm(const PresidentialPardonForm &other);
+	~PresidentialPardonForm();
 
-	ScavTrap &operator=(const ScavTrap &other);
+	PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
 
-	void attack(const std::string &target);
-	void guardGate();
+	void pardoned(void) const;
+	virtual void execute(Bureaucrat const & executor) const;
+	virtual std::string const	&getTarget(void) const;
+	static AForm	*makeForm(AForm *form, std::string const &type, std::string const &target);
 
-private:
-	bool _guardGateMode;
+private :
+	std::string _target;
 };
 
 #endif

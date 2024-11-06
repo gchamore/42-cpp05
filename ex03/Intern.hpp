@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                          :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 15:52:14 by gchamore          #+#    #+#             */
-/*   Updated: 2024/10/17 15:57:17 by gchamore         ###   ########.fr       */
+/*   Created: 2024/11/06 15:59:59 by gchamore          #+#    #+#             */
+/*   Updated: 2024/11/06 17:09:38 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DIAMONDTRAP_HPP
-#define DIAMONDTRAP_HPP
+#pragma once
+#ifndef INTERN_HPP
+#define INTERN_HPP
 
-#include "FragTrap.hpp"
+#include <string>
+#include <iostream>
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-class DiamondTrap : public ScavTrap, public FragTrap
+
+
+class Intern
 {
-public:
-	DiamondTrap();
-	DiamondTrap(const std::string name);
-	DiamondTrap(const DiamondTrap &other);
-	virtual ~DiamondTrap();
+	public:
+		Intern();
+		Intern(const Intern &other);
 
-	DiamondTrap &operator=(const DiamondTrap &other);
+		~Intern();
 
-	void whoAmI();
+		Intern &operator=(const Intern &other);
 
-private:
-	std::string _name;
+		AForm	*makeForm(const std::string &type, const std::string &target);
+
 };
 
 #endif

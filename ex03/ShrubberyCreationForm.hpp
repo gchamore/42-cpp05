@@ -10,22 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+#define SHRUBBERYCREATIONFORM_HPP
 
-#include "ScavTrap.hpp"
+#include "AForm.hpp"
+#include <fstream>
+#include <iostream>
 
-class FragTrap : virtual public ClapTrap
+class ShrubberyCreationForm : public AForm
 {
 public:
-	FragTrap();
-	FragTrap(const std::string name);
-	FragTrap(const FragTrap &other);
-	virtual ~FragTrap();
+	ShrubberyCreationForm();
+	ShrubberyCreationForm(std::string target);
+	ShrubberyCreationForm(const ShrubberyCreationForm &other);
+	~ShrubberyCreationForm();
 
-	FragTrap &operator=(const FragTrap &other);
+	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 
-	void highFivesGuys(void);
+	void create_tree(void) const;
+	virtual void execute(Bureaucrat const & executor) const;
+	virtual std::string const	&getTarget(void) const;
+	static AForm	*makeForm(AForm *form, std::string const &type, std::string const &target);
+private :
+	std::string _target;
 };
 
 #endif

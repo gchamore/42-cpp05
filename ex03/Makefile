@@ -6,11 +6,11 @@
 #    By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/26 16:41:00 by gchamore          #+#    #+#              #
-#    Updated: 2024/10/21 14:46:01 by gchamore         ###   ########.fr        #
+#    Updated: 2024/11/06 17:09:11 by gchamore         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = diamondtrap
+NAME = form
 
 CC = c++
 
@@ -18,13 +18,15 @@ CFLAGS = -g -Wall -Wextra -Werror -std=c++98
 
 RM = rm -rf
 
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 
 OBJ_DIR = objs
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 
 DEPS = $(OBJS:.o=.d)
+
+TO_DELETE = Fred_shrubbery
 
 GREEN = \033[1;32m
 YELLOW = \033[1;33m
@@ -45,7 +47,7 @@ clean:
 	$(RM) $(OBJS) $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(TO_DELETE)
 
 re: fclean all
 
@@ -59,12 +61,12 @@ first_header:
 	@echo "\n $$FIRST_HEADER \n"
 
 define FIRST_HEADER
-$(ORANGE)██████╗██████╗ ██████╗      ██████╗ ██████╗ 
-██╔════╝██╔══██╗██╔══██╗    ██╔═████╗╚════██╗
-██║     ██████╔╝██████╔╝    ██║██╔██║ █████╔╝
-██║     ██╔═══╝ ██╔═══╝     ████╔╝██║ ╚═══██╗
-╚██████╗██║     ██║         ╚██████╔╝██████╔╝
- ╚═════╝╚═╝     ╚═╝          ╚═════╝ ╚═════╝ $(RESET) 
+$(ORANGE)██████╗██████╗ ██████╗      ██████╗ ███████╗
+██╔════╝██╔══██╗██╔══██╗    ██╔═████╗██╔════╝
+██║     ██████╔╝██████╔╝    ██║██╔██║███████╗
+██║     ██╔═══╝ ██╔═══╝     ████╔╝██║╚════██║
+╚██████╗██║     ██║         ╚██████╔╝███████║
+ ╚═════╝╚═╝     ╚═╝          ╚═════╝ ╚══════╝$(RESET) 
 
 $(YELLOW)EX 03$(RESET)
 endef

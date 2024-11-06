@@ -10,30 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
 
+#include "AForm.hpp"
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 
-class ClapTrap
+class RobotomyRequestForm : public AForm
 {
 public:
-	ClapTrap();
-	ClapTrap(const std::string name);
-	ClapTrap(const ClapTrap &other);
-	virtual ~ClapTrap();
+	RobotomyRequestForm();
+	RobotomyRequestForm(std::string target);
+	RobotomyRequestForm(const RobotomyRequestForm &other);
+	~RobotomyRequestForm();
 
-	ClapTrap &operator=(const ClapTrap &other);
+	RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 
-	void attack(const std::string &target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
-
-protected:
-	std::string _name;
-	unsigned int _hitPoints;
-	unsigned int _energyPoints;
-	unsigned int _attackDamage;
+	void robotomized(void) const;
+	virtual void execute(Bureaucrat const & executor) const;
+	virtual std::string const	&getTarget(void) const;
+	static AForm	*makeForm(AForm *form, std::string const &type, std::string const &target);
+private :
+	std::string _target;
 };
 
 #endif
