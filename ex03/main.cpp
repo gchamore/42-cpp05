@@ -6,7 +6,7 @@
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:53:13 by gchamore          #+#    #+#             */
-/*   Updated: 2024/11/06 17:06:21 by gchamore         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:01:32 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int main(void)
 		std::cout << "Caught exception: " << e.what() << std::endl;
 	}
 
+	try
+	{
 	std::cout << "------------------------------------" << std::endl;
 	form = bob.makeForm("shrubbery creation", "Fred");
 	karen.signForm(*form);
@@ -57,5 +59,10 @@ int main(void)
 	karen.signForm(*form);
 	karen.executeForm(*form);
 	delete form;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Caught exception: " << e.what() << std::endl;
+	}
 	return (0);
 }

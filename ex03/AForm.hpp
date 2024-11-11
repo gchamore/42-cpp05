@@ -6,7 +6,7 @@
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:52:14 by gchamore          #+#    #+#             */
-/*   Updated: 2024/11/06 16:59:03 by gchamore         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:56:37 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ public:
 	std::string getName() const;
 	unsigned int getGradeToSign() const;
 	unsigned int getGradeToExecute() const;
-	virtual std::string const	&getTarget(void) const = 0;
 	bool getSigned() const;
 	void beSigned(Bureaucrat &bureaucrat);
 	virtual void execute(Bureaucrat const & executor) const = 0;

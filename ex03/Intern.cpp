@@ -6,7 +6,7 @@
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:59:56 by gchamore          #+#    #+#             */
-/*   Updated: 2024/11/06 17:06:46 by gchamore         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:14:15 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ Intern &Intern::operator=(const Intern &other)
 	std::cout << "Intern Assignation operator called" << std::endl;
 	if (this == &other)
 		return *this;
-	// nothing to copy here, since intern has no variables
 	return *this;
 }
 
@@ -51,6 +50,6 @@ AForm	*Intern::makeForm(const std::string &type, const std::string &target)
 	if (!form)
 		throw (AForm::InvalidFormException());
 	else
-		std::cout << "Intern creates form: " << form->getName() << " with target: " << form->getTarget() << std::endl;
+		std::cout << "Intern creates form: " << form->getName() << " with target: " << target << std::endl;
 	return (form);
 }

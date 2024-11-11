@@ -29,7 +29,6 @@ public:
 
 	void create_tree(void) const;
 	virtual void execute(Bureaucrat const & executor) const;
-	virtual std::string const	&getTarget(void) const;
 	static AForm	*makeForm(AForm *form, std::string const &type, std::string const &target);
 private :
 	std::string _target;

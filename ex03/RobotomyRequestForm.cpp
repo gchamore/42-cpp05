@@ -62,11 +62,6 @@ void RobotomyRequestForm::robotomized() const
 		std::cout << _target << " has not been robotomized successfully" << std::endl;
 }
 
-std::string const	&RobotomyRequestForm::getTarget(void) const
-{
-	return _target;
-}
-
 AForm	*RobotomyRequestForm::makeForm(AForm *form, std::string const &type, std::string const &target)
 {
 	if (form == NULL && type == "robotomy request")

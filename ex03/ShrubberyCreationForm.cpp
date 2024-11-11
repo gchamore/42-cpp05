@@ -74,11 +74,6 @@ void ShrubberyCreationForm::create_tree() const
     std::cout << "Arbre ASCII créé dans le fichier " << filename << std::endl;
 }
 
-std::string const	&ShrubberyCreationForm::getTarget(void) const
-{
-	return _target;
-}
-
 AForm	*ShrubberyCreationForm::makeForm(AForm *form, std::string const &type, std::string const &target)
 {
 	if (form == NULL && type == "shrubbery creation")
