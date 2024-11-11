@@ -6,7 +6,7 @@
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 16:40:48 by gchamore          #+#    #+#             */
-/*   Updated: 2024/11/06 17:02:03 by gchamore         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:36:43 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ AForm::GradeTooLowException::GradeTooLowException(const std::string &bureaucrat_
 {
 }
 
+AForm::GradeTooLowException::~GradeTooLowException() throw() {}
+
 const char *AForm::GradeTooLowException::what() const throw()
 {
     return _message.c_str();
 }
-
-AForm::GradeTooLowException::~GradeTooLowException() throw() {}
 
 AForm::FormNotSignedException::FormNotSignedException(const std::string &form_name) throw()
     : _message(form_name + " is not signed!")

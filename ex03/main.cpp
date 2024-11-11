@@ -6,7 +6,7 @@
 /*   By: gchamore <gchamore@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:53:13 by gchamore          #+#    #+#             */
-/*   Updated: 2024/11/11 11:01:32 by gchamore         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:15:40 by gchamore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@
 #define LIGHT_BLUE "\033[38;5;153m"
 #define WHITE "\033[1;37m"
 
-
 int main(void)
 {
-	Intern		bob;
-	AForm		*form;
-	Bureaucrat	karen("Karen", 1);
+	Intern bob;
+	AForm *form;
+	Bureaucrat karen("Karen", 1);
 
 	try
 	{
@@ -49,16 +48,16 @@ int main(void)
 
 	try
 	{
-	std::cout << "------------------------------------" << std::endl;
-	form = bob.makeForm("shrubbery creation", "Fred");
-	karen.signForm(*form);
-	karen.executeForm(*form);
-	delete form;
-	std::cout << "------------------------------------" << std::endl;
-	form = bob.makeForm("presidential pardon", "Georgia");
-	karen.signForm(*form);
-	karen.executeForm(*form);
-	delete form;
+		std::cout << "------------------------------------" << std::endl;
+		form = bob.makeForm("shrubbery creation", "Fred");
+		karen.signForm(*form);
+		karen.executeForm(*form);
+		delete form;
+		std::cout << "------------------------------------" << std::endl;
+		form = bob.makeForm("presidential pardon", "Georgia");
+		karen.signForm(*form);
+		karen.executeForm(*form);
+		delete form;
 	}
 	catch (std::exception &e)
 	{
